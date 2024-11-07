@@ -13,7 +13,8 @@ setup(
     install_requires=[
         'huggingface_hub',
         'rdflib',
-        'qlever'
+        'qlever',
+        'kaggle'
     ],
     entry_points={
         'console_scripts': [

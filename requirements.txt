@@ -2,3 +2,4 @@ huggingface_hub
 rdflib
 qlever
 pytest
+kaggle
