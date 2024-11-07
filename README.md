@@ -49,8 +49,8 @@ docker run -it -p 3030:3030 stain/jena-fuseki
 You'll need to get a Kaggle API key and it comes in a file called `kaggle.json`, you have to put the username and key into environment variables.
 
 ```
-export KAGGLE_USERNAME={YOUR_USERNAME}
-export KAGGLE_KEY={YOUR_KEY}
+export KAGGLE_USERNAME=YOUR_USERNAME
+export KAGGLE_KEY=YOUR_KEY
 kaggle-rdf --fname kaggle.ttl --limit 10
 ```
 
@@ -67,6 +67,62 @@ docker run -p 8888:8888 -v ${PWD}:/app huggingface-rdf
 ```
 
 After that, you can access the Jupyter notebook server at http://localhost:8888.
+
+# Useful SPARQL Queries
+
+SPARQL (SPARQL Protocol and RDF Query Language) is a query language used to retrieve and manipulate data stored in RDF (Resource Description Framework) format, typically within a triplestore. Here are a few useful SPARQL query examples you can try to implement on https://huggingface.co/spaces/david4096/huggingface-rdf
+
+The basic structure of a SPQRQL query is SELECT: which you have to include a keywords that you would like to return in the result.
+WHERE: Defines the triple pattern we want to match in the RDF dataset.
+
+1. This query is used to retrieve distinct predicates from an Huggingface RDF dataset
+
+```sparql
+SELECT DISTINCT ?b WHERE {?a ?b ?c}
+```
+
+2. To retrieve information about a dataset, including its name, predicates, and the count of objects associated with each predicate. Includes a filters in the results to include only resources that are of type <https://schema.org/Dataset>.
+
+```sparql
+SELECT ?name ?p (count(?o) as ?predicate_count)
+WHERE {
+    ?dataset <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.org/Dataset> .
+    ?dataset <https://schema.org/name> ?name .
+    ?dataset ?p ?o .
+}
+GROUP BY ?p ?dataset
+```
+
+3. To retrieve distinct values with the keyword "bio" associated with the property <https://schema.org/keywords> regardless of the case.
+
+```sparql
+SELECT DISTINCT ?c 
+WHERE {
+  ?a <https://schema.org/keywords> ?c .
+  FILTER(CONTAINS(LCASE(?c), "bio"))
+}
+```
+
+4. To retrieve distinct values for croissant columns associated with the predicate.
+
+```sparql
+SELECT DISTINCT ?c 
+WHERE {
+  ?a <http://mlcommons.org/croissant/column> ?c
+}
+```
+
+5. To retrieves the names of creators and the count of items they are associated with.
+
+```sparql
+SELECT ?creatorName (COUNT(?a) AS ?count)
+WHERE {
+  ?a <https://schema.org/creator> ?c.
+  ?c <https://schema.org/name> ?creatorName.
+}
+GROUP BY ?creatorName
+ORDER BY DESC(?count)
+```
 
 ## Contributing
 

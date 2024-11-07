@@ -19,9 +19,15 @@ def croissant_dataset(dsid):
         dict: A JSON response containing metadata and details from the 'croissant' file for the specified dataset.
         
     """
-    response = requests.get(API_URL + dsid + "/croissant")
-        
-    return response.json()
+    request_url = API_URL + dsid + "/croissant/download"
+    # print("QUERY URL:",request_url)
+    response = requests.get(request_url)
+    # print("QUERY RESPONSE:",response)    
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print("Error downloading: ", dsid, response.status_code)
+        return None
 
 def get_datasets(limit):
     """
@@ -52,4 +58,10 @@ def fetch_datasets(limit):
         list: A list of dictionaries, each containing the 'croissant' metadata for a dataset.
     """
     datasets = get_datasets(limit)
-    return [croissant_dataset(dataset.id) for dataset in datasets]
+    croissant_datasets = []
+    for dataset in datasets:
+        result = croissant_dataset(str(dataset.ref))
+        if result != None:
+            croissant_datasets.append(result)
+            
+    return croissant_datasets
