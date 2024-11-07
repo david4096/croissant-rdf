@@ -1,4 +1,11 @@
 *.pyc
 qlever_scripts/huggingface-datasets*
 .stxxl
-/build
+build/
+huggingface_rdf.egg-info/
+*.egg-info/
+kaggle.json
+.vscode/
+
+
+#ignore folder with huggingface

@@ -45,7 +45,16 @@ You can also easily use Jena fuseki and load the generated .ttl file from the Fu
 docker run -it -p 3030:3030 stain/jena-fuseki
 
 ```
+### Extracting data from Kaggle
+You'll need to get a Kaggle API key and it comes in a file called `kaggle.json`, you have to put the username and key into environment variables.
 
+```
+export KAGGLE_USERNAME={YOUR_USERNAME}
+export KAGGLE_KEY={YOUR_KEY}
+kaggle-rdf --fname kaggle.ttl --limit 10
+```
+
+### Using Docker
 To lunch a jupyter notebook server to run and develop on the project locally run the following:
 ```
 docker build -t huggingface-rdf .
