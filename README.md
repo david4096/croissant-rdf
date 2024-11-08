@@ -2,7 +2,7 @@
 
 A proud Biohackathon project 🧑‍💻🧬👩‍💻
 
-<a target="_blank" href="https://colab.research.google.com/github/david4096/huggingface-rdf/blob/main/example.ipynb">
+<a target="_blank" href="https://colab.research.google.com/github/david4096/croissant-rdf/blob/main/example.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
