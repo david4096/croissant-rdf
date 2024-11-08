@@ -2,7 +2,7 @@ version: 1.2
 tools:
   - subclass: CWL
     primaryDescriptorPath: /workflows/huggingface-rdf.cwl
-    readMePath: README.md
+    readMePath: /README.md
     name: huggingface-rdf
     authors:
       - orcid: 0000-0001-6683-2270
