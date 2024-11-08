@@ -11,7 +11,7 @@ A proud Biohackathon project 🧑‍💻🧬👩‍💻
 ![image](https://github.com/user-attachments/assets/444fe9e9-0838-4f67-be7b-0f22a0789817)
 
 
-`huggingface_rdf` is a Python tool that generates RDF (Resource Description Framework) data from datasets available on Hugging Face. This tool enables researchers and developers to convert data into a machine-readable format for enhanced querying and data analysis.
+`croissant-rdf` is a Python tool that generates RDF (Resource Description Framework) data from datasets available on Hugging Face. This tool enables researchers and developers to convert data into a machine-readable format for enhanced querying and data analysis.
 
 This is made possible due to an effort to align to the [MLCommons Croissant](https://github.com/mlcommons/croissant) schema, which HF and others conform to.
 
