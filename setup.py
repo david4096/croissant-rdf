@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='huggingface-rdf',
-    version='0.1.0',
+    name='croissant-rdf',
+    version='0.1.1',
     author='David Steinberg',
-    author_email='david@resium.com',  # Replace with your email
-    description='A command-line tool for generating UMAP plots and KMeans clustering from JSONL data',
+    author_email='david@resium.com',
+    description='Tools for working with RDF from Croissant JSON-LD resources ',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/david4096/huggingface-rdf',
+    url='https://github.com/david4096/croissant-rdf',
     packages=find_packages(),
     install_requires=[
         'huggingface_hub',
