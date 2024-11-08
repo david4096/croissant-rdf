@@ -1,6 +1,6 @@
 # croissant-rdf
 
-A proud Biohackathon project 🧑‍💻🧬👩‍💻
+A proud [Biohackathon](http://www.biohackathon.org/) project 🧑‍💻🧬👩‍💻
 
 <a target="_blank" href="https://colab.research.google.com/github/david4096/croissant-rdf/blob/main/example.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
