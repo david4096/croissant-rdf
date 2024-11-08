@@ -1,4 +1,6 @@
-# huggingface_rdf
+# croissant-rdf
+
+A proud Biohackathon project 🧑‍💻🧬👩‍💻
 
 <a target="_blank" href="https://colab.research.google.com/github/david4096/huggingface-rdf/blob/main/example.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
@@ -24,8 +26,8 @@ This is made possible due to an effort to align to the [MLCommons Croissant](htt
 To install `huggingface_rdf`, clone the repository and install the package using pip:
 
 ```bash
-git clone https://github.com/david4096/huggingface-rdf.git
-cd huggingface-rdf
+git clone https://github.com/david4096/croissant-rdf.git
+cd croissant-rdf
 pip install .
 ```
 
@@ -61,13 +63,13 @@ kaggle-rdf --fname kaggle.ttl --limit 10
 To launch a jupyter notebook server to run and develop on the project locally run the following:
 
 ```
-docker build -t huggingface-rdf .
+docker build -t croissant-rdf .
 
-docker run -p 8888:8888 -v $(pwd):/app huggingface-rdf
+docker run -p 8888:8888 -v $(pwd):/app croissant-rdf
 ```
 The run command works for mac and linux for windows in PowerShell you need to use the following:
 ```
-docker run -p 8888:8888 -v ${PWD}:/app huggingface-rdf
+docker run -p 8888:8888 -v ${PWD}:/app croissant-rdf
 ```
 
 After that, you can access the Jupyter notebook server at http://localhost:8888.
