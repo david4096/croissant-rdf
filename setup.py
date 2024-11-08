@@ -19,6 +19,7 @@ setup(
     entry_points={
         'console_scripts': [
             'huggingface-rdf=huggingface_rdf:main',
+            'kaggle-rdf=kaggle_rdf:main'
         ],
     },
     classifiers=[

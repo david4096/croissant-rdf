@@ -1,7 +1,12 @@
+import logging
 import requests
-import os
-import kaggle
 from kaggle.api.kaggle_api_extended import KaggleApi
+
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from tqdm import tqdm
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
 
 
 # You need to use an API Key to make requests from Kaggle api.
@@ -19,12 +24,12 @@ def croissant_dataset(dsid):
         dict: A JSON response containing metadata and details from the 'croissant' file for the specified dataset.
         
     """
-    request_url = API_URL + dsid + "/croissant/download"
+    request_url = API_URL + str(dsid) + "/croissant/download"
     response = requests.get(request_url)  
     if response.status_code == 200:
         return response.json()
     else:
-        print("Error downloading: ", dsid, response.status_code)
+        logging.info(f"Error downloading: {dsid} with {response.status_code}")
         return None
 
 def get_datasets(limit):
@@ -37,19 +42,24 @@ def get_datasets(limit):
     Returns:
         list: A list of dataset objects, each containing metadata for a Hugging Face dataset.
     """
-    page_num = 1
     api = KaggleApi()
     api.authenticate()
     final_datasets_list = []
-    len_final_datasets_list = 0
-    while(len_final_datasets_list < limit):
-        curr_dataset_list = api.dataset_list(page=page_num)
-        final_datasets_list.extend(curr_dataset_list)
-        len_final_datasets_list += len(curr_dataset_list)
-        print("Number of datasets:",len_final_datasets_list)
-        page_num += 1
-    
-    print("Number of datasets:",len(final_datasets_list))
+    page_num = 1
+
+    # Initialize tqdm with the total number of items to fetch
+    with tqdm(total=limit, desc="Fetching datasets") as pbar:
+        while len(final_datasets_list) < limit:
+            curr_dataset_list = api.dataset_list(page=page_num)
+
+            if not curr_dataset_list:  # Stop if no more datasets are returned
+                break
+
+            final_datasets_list.extend(curr_dataset_list)
+            pbar.update(len(curr_dataset_list))  # Update the progress bar
+
+            page_num += 1
+
     return final_datasets_list[:limit]
 
 def fetch_datasets(limit):
@@ -66,4 +76,4 @@ def fetch_datasets(limit):
         list: A list of dictionaries, each containing the 'croissant' metadata for a dataset.
     """
     datasets = get_datasets(limit)
-    return [croissant_dataset(dataset.id) for dataset in datasets]
+    return [croissant_dataset(dataset) for dataset in tqdm(datasets)]
