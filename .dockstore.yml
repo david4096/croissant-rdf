@@ -1,8 +1,9 @@
 version: 1.2
-workflows:
+tools:
   - subclass: CWL
     primaryDescriptorPath: /workflows/huggingface-rdf.cwl
     readMePath: README.md
+    name: huggingface-rdf
     authors:
       - name: David Steinberg
         email: davidcs@ucsc.edu
