@@ -23,12 +23,12 @@ This is made possible due to an effort to align to the [MLCommons Croissant](htt
 
 ## Installation
 
-To install `huggingface_rdf`, clone the repository and install the package using pip:
+croissant-rdf is available in PyPi!
 
 ```bash
-git clone https://github.com/david4096/croissant-rdf.git
-cd croissant-rdf
-pip install .
+pip install croissant-rdf
+huggingface-rdf
+kaggle-rdf
 ```
 
 ## Usage
