@@ -9,7 +9,7 @@ workflows:
         orcid: 0000-0001-6683-2270
     topic: "Semantic Data Processing"
     publish: true
-notebooks
+notebooks:
   - format: JUPYTER
     language: PYTHON
     name: croissant-rdf-example
