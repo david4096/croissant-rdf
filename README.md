@@ -69,6 +69,16 @@ docker run -t -v $(pwd):/app david4096/croissant-rdf huggingface-rdf --fname doc
 
 This will create a Turtle file `docker.ttl` in the current working directory.
 
+### Using Common Workflow Language (CWL)
+
+First install [cwltool]([url](https://www.commonwl.org/user_guide/introduction/prerequisites.html)) and then you can run the workflow using:
+
+```bash
+cwltool https://raw.githubusercontent.com/david4096/croissant-rdf/refs/heads/main/workflows/huggingface-rdf.cwl --fname cwl.ttl --limit 5
+```
+
+This will output a Turtle file called `cwl.ttl` in your local directory.
+
 ### Using Docker to run a Jupyter server
 To launch a jupyter notebook server to run and develop on the project locally run the following:
 
