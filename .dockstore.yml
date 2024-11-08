@@ -1,0 +1,18 @@
+version: 1.2
+workflows:
+  - subclass: CWL
+    primaryDescriptorPath: /workflows/huggingface-rdf.cwl
+    readMePath: README.md
+    authors:
+      - name: David Steinberg
+        email: davidcs@ucsc.edu
+        orcid: 0000-0001-6683-2270
+    topic: "Semantic Data Processing"
+    publish: true
+notebooks
+  - format: JUPYTER
+    language: PYTHON
+    name: croissant-rdf-example
+    path: /example.ipynb
+    topic: This notebook demonstrates how to use croissant-rdf
+    publish: true
