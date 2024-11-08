@@ -5,10 +5,8 @@ tools:
     readMePath: README.md
     name: huggingface-rdf
     authors:
-      - name: David Steinberg
-        email: davidcs@ucsc.edu
-        orcid: 0000-0001-6683-2270
-    topic: "Semantic Data Processing"
+      - orcid: 0000-0001-6683-2270
+    topic: Generate RDF from Hugging Face Croissant ML descriptions
     publish: true
 notebooks:
   - format: JUPYTER
@@ -16,4 +14,6 @@ notebooks:
     name: croissant-rdf-example
     path: /example.ipynb
     topic: This notebook demonstrates how to use croissant-rdf
+    authors:
+      - orcid: 0000-0001-6683-2270
     publish: true
