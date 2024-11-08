@@ -59,17 +59,27 @@ export KAGGLE_KEY={YOUR_KEY}
 kaggle-rdf --fname kaggle.ttl --limit 10
 ```
 
-### Using Docker
+### Running via Docker
+
+You can use the `huggingface-rdf` or `kaggle-rdf` tools via Docker:
+
+```bash
+docker run -t -v $(pwd):/app david4096/croissant-rdf huggingface-rdf --fname docker.ttl
+```
+
+This will create a Turtle file `docker.ttl` in the current working directory.
+
+### Using Docker to run a Jupyter server
 To launch a jupyter notebook server to run and develop on the project locally run the following:
 
 ```
-docker build -t croissant-rdf .
+docker build -t croissant-rdf-jupyter -f Dockerfile.jupyter .
 
-docker run -p 8888:8888 -v $(pwd):/app croissant-rdf
+docker run -p 8888:8888 -v $(pwd):/app croissant-rdf-jupyter
 ```
 The run command works for mac and linux for windows in PowerShell you need to use the following:
 ```
-docker run -p 8888:8888 -v ${PWD}:/app croissant-rdf
+docker run -p 8888:8888 -v ${PWD}:/app croissant-rdf-jupyter
 ```
 
 After that, you can access the Jupyter notebook server at http://localhost:8888.
