@@ -8,7 +8,7 @@ A proud Biohackathon project 🧑‍💻🧬👩‍💻
 
 [![Open in Spaces](https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-sm-dark.svg)](https://huggingface.co/spaces/david4096/huggingface-rdf)
 
-<img width="1069" alt="image" src="https://github.com/user-attachments/assets/8d987b6b-1f55-4ed2-80cc-63f43982605f">
+![image](https://github.com/user-attachments/assets/444fe9e9-0838-4f67-be7b-0f22a0789817)
 
 
 `huggingface_rdf` is a Python tool that generates RDF (Resource Description Framework) data from datasets available on Hugging Face. This tool enables researchers and developers to convert data into a machine-readable format for enhanced querying and data analysis.
