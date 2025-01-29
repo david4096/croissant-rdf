@@ -1,5 +1,7 @@
 # croissant-rdf
 
+Come see our poster at [SWAT4HCLS](https://www.swat4ls.org)!
+
 A proud [Biohackathon](http://www.biohackathon.org/) project 🧑‍💻🧬👩‍💻
 
 <a target="_blank" href="https://colab.research.google.com/github/david4096/croissant-rdf/blob/main/example.ipynb">
