@@ -1,6 +1,6 @@
 import json
 
-from rdflib import Graph, Literal, Namespace, URIRef
+from rdflib import Graph, URIRef
 from rich.progress import track
 
 from croissant_rdf.utils import logger
@@ -9,7 +9,8 @@ from croissant_rdf.utils import logger
 def chunk_data(data, chunk_size):
     """Chunking data"""
     for i in range(0, len(data), chunk_size):
-        yield data[i:i + chunk_size]
+        yield data[i : i + chunk_size]
+
 
 def convert_to_rdf(data, output_file, base="http://fakebase"):
     """Take a JSON-serializable data structure, converts it to RDF using
@@ -26,7 +27,9 @@ def convert_to_rdf(data, output_file, base="http://fakebase"):
     """
     total_items = len(data)
     chunk_size = total_items // 100 if total_items > 100 else 1
-    logger.info(f"Starting RDF conversion. Total items: {total_items}, Chunk size: {chunk_size}")
+    logger.info(
+        f"Starting RDF conversion. Total items: {total_items}, Chunk size: {chunk_size}"
+    )
 
     g = Graph()
 

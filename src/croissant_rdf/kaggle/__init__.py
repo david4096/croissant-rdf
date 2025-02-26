@@ -9,7 +9,10 @@ from croissant_rdf.utils import logger
 __version__ = "0.1.0"
 __author__ = "David Steinberg,Nelson Quinones"
 
-def generate_ttl(fname: str, limit: int, use_api_key: bool = True, search: Optional[str] = None):
+
+def generate_ttl(
+    fname: str, limit: int, use_api_key: bool = True, search: Optional[str] = None
+):
     """
     Generate a Turtle (.ttl) file from datasets fetched from HuggingFace.
 
@@ -23,7 +26,9 @@ def generate_ttl(fname: str, limit: int, use_api_key: bool = True, search: Optio
     Raises:
         ValueError: If the fname or limit parameters are invalid.
     """
-    logger.info(f"Retrieving datasets metadata from Kaggle{' for ' + search if search else ''}.")
+    logger.info(
+        f"Retrieving datasets metadata from Kaggle{' for ' + search if search else ''}."
+    )
     try:
         logger.debug("Fetching datasets with a limit of %d", limit)
         datasets = fetch_datasets(limit, search)
@@ -37,25 +42,49 @@ def generate_ttl(fname: str, limit: int, use_api_key: bool = True, search: Optio
         logger.error("An error occurred while generating the Turtle file: %s", e)
         raise
 
+
 def main():
     """
     Parse command-line arguments and generate a Turtle file.
     """
-    parser = argparse.ArgumentParser(description="Generate a Turtle file from HuggingFace datasets.")
-    parser.add_argument("search", type=str, nargs="?", default=None, help="Search keywords to filter datasets.")
-    parser.add_argument("--fname", type=str, required=False, default="huggingface.ttl", help="The filename for the output Turtle file.")
-    parser.add_argument("--limit", type=int, required=False, default=10, help="The maximum number of datasets to fetch.")
-    parser.add_argument("--use_api_key", type=bool, required=False, default=True, help="Use API key for HuggingFace API requests.")
+    parser = argparse.ArgumentParser(
+        description="Generate a Turtle file from HuggingFace datasets."
+    )
+    parser.add_argument(
+        "search",
+        type=str,
+        nargs="?",
+        default=None,
+        help="Search keywords to filter datasets.",
+    )
+    parser.add_argument(
+        "--fname",
+        type=str,
+        required=False,
+        default="huggingface.ttl",
+        help="The filename for the output Turtle file.",
+    )
+    parser.add_argument(
+        "--limit",
+        type=int,
+        required=False,
+        default=10,
+        help="The maximum number of datasets to fetch.",
+    )
+    parser.add_argument(
+        "--use_api_key",
+        type=bool,
+        required=False,
+        default=True,
+        help="Use API key for HuggingFace API requests.",
+    )
 
     args = parser.parse_args()
 
     generate_ttl(args.fname, args.limit, args.use_api_key, args.search)
 
+
 if __name__ == "__main__":
     main()
 
-__all__ = [
-    "convert_to_rdf",
-    "fetch_datasets",
-    "generate_ttl"
-]
+__all__ = ["convert_to_rdf", "fetch_datasets", "generate_ttl"]

@@ -3,16 +3,21 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional
 
 import requests
-from huggingface_hub import HfApi, list_datasets
+from huggingface_hub import list_datasets
 from rich.progress import track
 
 from croissant_rdf.utils import logger
 
-headers = {"Authorization": f"Bearer {os.environ.get('HF_API_KEY')}"} if os.environ.get('HF_API_KEY') else {}
+headers = (
+    {"Authorization": f"Bearer {os.environ.get('HF_API_KEY')}"}
+    if os.environ.get("HF_API_KEY")
+    else {}
+)
 
 API_URL = "https://huggingface.co/api/datasets/"
 
-def croissant_dataset(dsid,use_api_key=True):
+
+def croissant_dataset(dsid, use_api_key=True):
     """Retrieve the 'croissant' metadata file for a specified dataset from HuggingFace.
 
     Args:
@@ -70,8 +75,13 @@ def fetch_datasets(limit: int, use_api_key: bool = True, search: Optional[str] =
     try:
         with ThreadPoolExecutor(max_workers=4) as executor:
             # Submit each dataset to the thread pool
-            futures = {executor.submit(croissant_dataset, dataset.id): dataset.id for dataset in datasets}            # Use tqdm to show progress
-            for future in track(as_completed(futures), "Fetching datasets", len(futures)):
+            futures = {
+                executor.submit(croissant_dataset, dataset.id): dataset.id
+                for dataset in datasets
+            }  # Use tqdm to show progress
+            for future in track(
+                as_completed(futures), "Fetching datasets", len(futures)
+            ):
                 dataset_id = futures[future]
                 try:
                     results.append(future.result())

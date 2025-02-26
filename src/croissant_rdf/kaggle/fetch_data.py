@@ -8,6 +8,7 @@ from rich.progress import Progress, track
 # You need to use an API Key to make requests from Kaggle api.
 API_URL = "https://www.kaggle.com/datasets/"
 
+
 def croissant_dataset(dsid):
     """Retrieve the 'croissant' metadata file for a specified dataset from Kaggle.
 
@@ -24,6 +25,7 @@ def croissant_dataset(dsid):
     else:
         logging.info(f"Error downloading: {dsid} with {response.status_code}")
         return None
+
 
 def get_datasets(limit: int, search: Optional[str] = None):
     """Retrieve a list of datasets hosted on HuggingFace, up to the specified limit.
@@ -53,6 +55,7 @@ def get_datasets(limit: int, search: Optional[str] = None):
             page_num += 1
     return final_datasets_list[:limit]
 
+
 def fetch_datasets(limit: int, search: Optional[str] = None):
     """Fetch metadata for multiple datasets from HuggingFace, including the 'croissant' metadata file for each.
 
@@ -66,4 +69,7 @@ def fetch_datasets(limit: int, search: Optional[str] = None):
         list: A list of dictionaries, each containing the 'croissant' metadata for a dataset.
     """
     datasets = get_datasets(limit, search)
-    return [croissant_dataset(dataset) for dataset in track(datasets, "Fetch metadata", total=len(datasets))]
+    return [
+        croissant_dataset(dataset)
+        for dataset in track(datasets, "Fetch metadata", total=len(datasets))
+    ]
