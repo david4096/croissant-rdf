@@ -69,7 +69,4 @@ def fetch_datasets(limit: int, search: Optional[str] = None):
         list: A list of dictionaries, each containing the 'croissant' metadata for a dataset.
     """
     datasets = get_datasets(limit, search)
-    return [
-        croissant_dataset(dataset)
-        for dataset in track(datasets, "Fetch metadata", total=len(datasets))
-    ]
+    return [croissant_dataset(dataset) for dataset in track(datasets, "Fetch metadata", total=len(datasets))]

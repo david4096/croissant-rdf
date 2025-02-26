@@ -28,9 +28,7 @@ def test_mock_croissant_dataset(mock_response):
     with patch("requests.get", return_value=mock_response) as mock_get:
         result = croissant_dataset("test_dataset")
 
-        mock_get.assert_called_once_with(
-            "https://huggingface.co/api/datasets/test_dataset/croissant", headers=ANY
-        )
+        mock_get.assert_called_once_with("https://huggingface.co/api/datasets/test_dataset/croissant", headers=ANY)
         assert result == {"name": "test_dataset", "description": "A test dataset"}
 
 
@@ -38,9 +36,7 @@ def test_mock_fetch_datasets(mock_response):
     mock_dataset = MagicMock()
     mock_dataset.id = "test_dataset"
 
-    with patch(
-        "croissant_rdf.huggingface.fetch_data.get_datasets", return_value=[mock_dataset]
-    ) as mock_get:
+    with patch("croissant_rdf.huggingface.fetch_data.get_datasets", return_value=[mock_dataset]) as mock_get:
         with patch(
             "croissant_rdf.huggingface.fetch_data.croissant_dataset",
             return_value=mock_response.json(),

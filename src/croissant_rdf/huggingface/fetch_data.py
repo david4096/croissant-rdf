@@ -8,11 +8,7 @@ from rich.progress import track
 
 from croissant_rdf.utils import logger
 
-headers = (
-    {"Authorization": f"Bearer {os.environ.get('HF_API_KEY')}"}
-    if os.environ.get("HF_API_KEY")
-    else {}
-)
+headers = {"Authorization": f"Bearer {os.environ.get('HF_API_KEY')}"} if os.environ.get("HF_API_KEY") else {}
 
 API_URL = "https://huggingface.co/api/datasets/"
 
@@ -76,12 +72,9 @@ def fetch_datasets(limit: int, use_api_key: bool = True, search: Optional[str] =
         with ThreadPoolExecutor(max_workers=4) as executor:
             # Submit each dataset to the thread pool
             futures = {
-                executor.submit(croissant_dataset, dataset.id): dataset.id
-                for dataset in datasets
+                executor.submit(croissant_dataset, dataset.id): dataset.id for dataset in datasets
             }  # Use tqdm to show progress
-            for future in track(
-                as_completed(futures), "Fetching datasets", len(futures)
-            ):
+            for future in track(as_completed(futures), "Fetching datasets", len(futures)):
                 dataset_id = futures[future]
                 try:
                     results.append(future.result())

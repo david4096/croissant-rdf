@@ -10,9 +10,7 @@ __version__ = "0.1.0"
 __author__ = "David Steinberg,Nelson Quinones"
 
 
-def generate_ttl(
-    fname: str, limit: int, use_api_key: bool = True, search: Optional[str] = None
-):
+def generate_ttl(fname: str, limit: int, use_api_key: bool = True, search: Optional[str] = None):
     """
     Generate a Turtle (.ttl) file from datasets fetched from HuggingFace.
 
@@ -26,16 +24,13 @@ def generate_ttl(
     Raises:
         ValueError: If the fname or limit parameters are invalid.
     """
-    logger.info(
-        f"Retrieving datasets metadata from Kaggle{' for ' + search if search else ''}."
-    )
+    logger.info(f"Retrieving datasets metadata from Kaggle{' for ' + search if search else ''}.")
     try:
         logger.debug("Fetching datasets with a limit of %d", limit)
         datasets = fetch_datasets(limit, search)
 
         logger.debug("Converting fetched datasets to RDF format.")
         ttl_path = convert_to_rdf(datasets, fname)
-
         return ttl_path
 
     except Exception as e:
@@ -47,9 +42,7 @@ def main():
     """
     Parse command-line arguments and generate a Turtle file.
     """
-    parser = argparse.ArgumentParser(
-        description="Generate a Turtle file from HuggingFace datasets."
-    )
+    parser = argparse.ArgumentParser(description="Generate a Turtle file from HuggingFace datasets.")
     parser.add_argument(
         "search",
         type=str,
