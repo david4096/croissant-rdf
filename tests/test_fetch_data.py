@@ -1,8 +1,15 @@
+# import sys
+from unittest.mock import ANY, MagicMock, patch
+
 import pytest
-import sys
-from unittest.mock import patch, MagicMock, ANY
-sys.path.append('.')
-from huggingface_rdf.fetch_data import croissant_dataset, get_datasets, fetch_datasets
+
+# sys.path.append('.')
+from croissant_rdf.huggingface.fetch_data import (
+    croissant_dataset,
+    fetch_datasets,
+    get_datasets,
+)
+
 
 @pytest.fixture
 def mock_env_vars():
@@ -21,7 +28,7 @@ def mock_response():
 def test_mock_croissant_dataset(mock_response):
     with patch('requests.get', return_value=mock_response) as mock_get:
         result = croissant_dataset('test_dataset')
-        
+
         mock_get.assert_called_once_with(
             "https://huggingface.co/api/datasets/test_dataset/croissant",
             headers=ANY)
@@ -30,17 +37,17 @@ def test_mock_croissant_dataset(mock_response):
 def test_mock_fetch_datasets(mock_response):
     mock_dataset = MagicMock()
     mock_dataset.id = "test_dataset"
-    
-    with patch('huggingface_rdf.fetch_data.get_datasets', return_value=[mock_dataset]) as mock_get:
-        with patch('huggingface_rdf.fetch_data.croissant_dataset', return_value=mock_response.json()):
+
+    with patch("croissant_rdf.huggingface.fetch_data.get_datasets", return_value=[mock_dataset]) as mock_get:
+        with patch("croissant_rdf.huggingface.fetch_data.croissant_dataset", return_value=mock_response.json()):
             result = fetch_datasets(limit=1)
-            
-            mock_get.assert_called_once_with(1)
+
+            mock_get.assert_called_once_with(1, None)
             assert len(result) == 1
             assert result[0] == {"name": "test_dataset", "description": "A test dataset"}
 
 def test_mock_fetch_datasets_empty():
-    with patch('huggingface_rdf.fetch_data.get_datasets', return_value=[]):
+    with patch('croissant_rdf.huggingface.fetch_data.get_datasets', return_value=[]):
         result = fetch_datasets(limit=0)
         assert result == []
 
@@ -53,8 +60,8 @@ def test_fetch_croissant_dataset():
     assert len(result)>0
     assert 'https://schema.org/' in result['@context']['@vocab']
     assert 'http://mlcommons.org/croissant/' in result['@context']['cr']
-    
-    
+
+
 
 def test_fetch_data_workflow():
     croissant_dataset = fetch_datasets(5)
@@ -63,5 +70,3 @@ def test_fetch_data_workflow():
         if 'error' not in dataset.keys():
             assert 'https://schema.org/' in dataset['@context']['@vocab']
             assert 'http://mlcommons.org/croissant/' in dataset['@context']['cr']
-    
-    

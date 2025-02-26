@@ -1,8 +1,0 @@
-@prefix ns1: <http://schema.org/> .
-
-[] ns1:name "test_dataset" .
-
-[] ns1:name "test_dataset_3" .
-
-[] ns1:name "test_dataset_2" .
-

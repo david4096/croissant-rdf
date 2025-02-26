@@ -1,10 +1,9 @@
-import pytest
-from rdflib import Graph
 import os
-import sys
-sys.path.append('.')
-from huggingface_rdf.fetch_data import fetch_datasets
-from huggingface_rdf.generate_rdf import convert_to_rdf
+
+from rdflib import Graph
+
+from croissant_rdf.generate_rdf import convert_to_rdf
+from croissant_rdf.huggingface.fetch_data import fetch_datasets
 
 
 def test_convert_to_rdf_mock_data():
@@ -67,6 +66,6 @@ def test_convert_to_rdf_real_data():
     assert len(g)>0
     # asset there is a file named test_output.ttl in the data directory
     assert os.path.isfile
-    
+
     # clean up
     os.remove(filename)
