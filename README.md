@@ -156,7 +156,7 @@ We welcome contributions! Please open an issue or submit a pull request!
 
 ## Development
 
-> We recommend to use [`uv`](https://docs.astral.sh/uv/getting-started/installation/) for working in development.
+> We recommend to use [`uv`](https://docs.astral.sh/uv/getting-started/installation/) for working in development, it will handle virtual environments and dependencies automatically and really quickly.
 
 Create a `.env` file with the required API keys.
 
@@ -182,5 +182,17 @@ Run tests:
 
 ```sh
 uv run pytest
+```
+
+Run formatting and linting:
+
+```sh
+uvx ruff format && uvx ruff check --fix
+```
+
+Start a SPARQL endpoint on the generated files using [`rdflib-endpoint`](https://github.com/vemonet/rdflib-endpoint):
+
+```sh
+uv run rdflib-endpoint serve --store Oxigraph *.ttl
 ```
 
