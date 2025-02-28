@@ -19,9 +19,9 @@ This is made possible due to an effort to align to the [MLCommons Croissant](htt
 
 ## Features
 
-- Fetch datasets from Hugging Face.
-- Convert datasets to RDF format.
-- Generate Turtle (.ttl) files for easy integration with SPARQL endpoints.
+- Fetch datasets from HuggingFace or Kaggle.
+- Convert datasets metadata to RDF format.
+- Generate Turtle (`.ttl`) files for easy integration with SPARQL endpoints.
 
 ## Installation
 
@@ -29,36 +29,34 @@ croissant-rdf is available in PyPi!
 
 ```bash
 pip install croissant-rdf
-huggingface-rdf
-kaggle-rdf
 ```
 
 ## Usage
 
 After installing the package, you can use the command-line interface (CLI) to generate RDF data:
 
-```
+```sh
 export HF_API_KEY={YOUR_KEY}
 huggingface-rdf --fname huggingface.ttl --limit 10
-
 ```
 
 Check out the `qlever_scripts` directory to get help loading the RDF into qlever for querying.
 
 You can also easily use Jena fuseki and load the generated .ttl file from the Fuseki ui.
 
-```
-
+```sh
 docker run -it -p 3030:3030 stain/jena-fuseki
-
 ```
 ### Extracting data from Kaggle
 You'll need to get a Kaggle API key and it comes in a file called `kaggle.json`, you have to put the username and key into environment variables.
 
-```
+```sh
 export KAGGLE_USERNAME={YOUR_USERNAME}
 export KAGGLE_KEY={YOUR_KEY}
 kaggle-rdf --fname kaggle.ttl --limit 10
+
+# Optionally you can provide a keyword to filter the dataset search
+kaggle-rdf --fname kaggle.ttl --limit 10 covid
 ```
 
 ### Running via Docker
@@ -96,7 +94,7 @@ docker run -p 8888:8888 -v ${PWD}:/app croissant-rdf-jupyter
 
 After that, you can access the Jupyter notebook server at http://localhost:8888.
 
-# Useful SPARQL Queries
+## Useful SPARQL Queries
 
 SPARQL (SPARQL Protocol and RDF Query Language) is a query language used to retrieve and manipulate data stored in RDF (Resource Description Framework) format, typically within a triplestore. Here are a few useful SPARQL query examples you can try to implement on https://huggingface.co/spaces/david4096/huggingface-rdf
 
@@ -155,4 +153,46 @@ ORDER BY DESC(?count)
 ## Contributing
 
 We welcome contributions! Please open an issue or submit a pull request!
+
+## Development
+
+> We recommend to use [`uv`](https://docs.astral.sh/uv/getting-started/installation/) for working in development, it will handle virtual environments and dependencies automatically and really quickly.
+
+Create a `.env` file with the required API keys.
+
+```sh
+HF_API_KEY=hf_YYY
+KAGGLE_USERNAME=you
+KAGGLE_KEY=0000
+```
+
+Run for HuggingFace:
+
+```sh
+uv run --env-file .env huggingface-rdf --fname huggingface.ttl --limit 10 covid
+```
+
+Run for kaggle:
+
+```sh
+uv run --env-file .env kaggle-rdf --fname kaggle.ttl --limit 10 covid
+```
+
+Run tests:
+
+```sh
+uv run pytest
+```
+
+Run formatting and linting:
+
+```sh
+uvx ruff format && uvx ruff check --fix
+```
+
+Start a SPARQL endpoint on the generated files using [`rdflib-endpoint`](https://github.com/vemonet/rdflib-endpoint):
+
+```sh
+uv run rdflib-endpoint serve --store Oxigraph *.ttl
+```
 
