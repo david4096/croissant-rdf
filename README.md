@@ -1,4 +1,6 @@
-# croissant-rdf
+# 🥐 croissant-rdf
+
+[![Tests](https://github.com/david4096/croissant-rdf/actions/workflows/test.yml/badge.svg)](https://github.com/david4096/croissant-rdf/actions/workflows/test.yml)
 
 Come see our poster at [SWAT4HCLS](https://www.swat4ls.org)!
 
@@ -183,6 +185,12 @@ Run tests:
 ```sh
 uv run pytest
 ```
+
+> Test with HTML coverage report:
+>
+> ```sh
+> uv run pytest --cov-report html && uv run python -m http.server 3000 --directory ./htmlcov
+> ```
 
 Run formatting and linting:
 

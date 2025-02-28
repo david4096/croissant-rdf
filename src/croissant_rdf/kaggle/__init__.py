@@ -29,6 +29,8 @@ def generate_ttl(fname: str, limit: int, use_api_key: bool = True, search: Optio
         logger.debug("Fetching datasets with a limit of %d", limit)
         datasets = fetch_datasets(limit, search)
 
+        print(datasets)
+
         logger.debug("Converting fetched datasets to RDF format.")
         ttl_path = convert_to_rdf(datasets, fname)
         return ttl_path

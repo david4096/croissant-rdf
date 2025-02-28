@@ -25,9 +25,9 @@ def croissant_dataset(dsid, use_api_key=True):
 
     """
     if use_api_key:
-        response = requests.get(API_URL + dsid + "/croissant", headers=headers)
+        response = requests.get(API_URL + dsid + "/croissant", headers=headers, timeout=30)
     else:
-        response = requests.get(API_URL + dsid + "/croissant")
+        response = requests.get(API_URL + dsid + "/croissant", timeout=30)
 
     return response.json()
 

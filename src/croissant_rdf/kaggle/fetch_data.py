@@ -19,12 +19,11 @@ def croissant_dataset(dsid):
         dict: A JSON response containing metadata and details from the 'croissant' file for the specified dataset.
     """
     request_url = API_URL + str(dsid) + "/croissant/download"
-    response = requests.get(request_url)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        logging.info(f"Error downloading: {dsid} with {response.status_code}")
+    response = requests.get(request_url, timeout=30)
+    if response.status_code != 200:
+        logging.warning(f"Error downloading: {dsid} with {response.status_code}")
         return None
+    return response.json()
 
 
 def get_datasets(limit: int, search: Optional[str] = None):

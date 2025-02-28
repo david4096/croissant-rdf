@@ -1,14 +1,23 @@
 import os
 
+import pytest
 from rdflib import Graph
 
 from croissant_rdf.generate_rdf import convert_to_rdf
 from croissant_rdf.huggingface.fetch_data import fetch_datasets
 
+OUTPUT_FILEPATH = "./tests/test_output.ttl"
+
+
+@pytest.fixture(autouse=True)
+def cleanup():
+    yield
+    if os.path.isfile(OUTPUT_FILEPATH):
+        os.remove(OUTPUT_FILEPATH)
+
 
 def test_convert_to_rdf_mock_data():
-    # Test data
-    data = fetch_datasets(limit=1)
+    """Test with mock data"""
     data = [
         {
             "@context": {
@@ -32,42 +41,29 @@ def test_convert_to_rdf_mock_data():
             "name": "test_dataset_3",
         },
     ]
-    print(data)
-    # print current folder where the test is running
-    filename = "./tests/data/test_output.ttl"
-    file_ttl = convert_to_rdf(data, filename)
-    # asset there is a file named test_output.ttl in the data directory
-    assert os.path.isfile(filename)
+    file_ttl = convert_to_rdf(data, OUTPUT_FILEPATH)
+    # assert there is a file named test_output.ttl in the data directory
+    assert os.path.isfile(OUTPUT_FILEPATH)
+    assert os.path.isfile(file_ttl)
     # assert there are 9 triples in the graph
-    g = Graph().parse(filename, format="ttl")
+    g = Graph().parse(OUTPUT_FILEPATH, format="ttl")
     assert len(g) == 3
-    # clean up
-    os.remove(filename)
 
 
 def test_convert_to_rdf_mock_data_empty():
-    # Test data
+    """Test with empty data"""
     data = []
-    filename = "./tests/data/test_output.ttl"
-    file_ttl = convert_to_rdf(data, filename)
-    # asset there is a file named test_output.ttl in the data directory
-    assert os.path.isfile(filename)
-    # assert there are 9 triples in the graph
-    g = Graph().parse(filename, format="ttl")
+    convert_to_rdf(data, OUTPUT_FILEPATH)
+    assert os.path.isfile(OUTPUT_FILEPATH)
+    g = Graph().parse(OUTPUT_FILEPATH, format="ttl")
     assert len(g) == 0
-    # clean up
-    os.remove(filename)
 
 
 def test_convert_to_rdf_real_data():
-    # Test data
+    """Test data from HuggingFace, does not require API key"""
     data = fetch_datasets(limit=5)
-    filename = "./tests/data/test_output.ttl"
-    file_ttl = convert_to_rdf(data, filename)
-    g = Graph().parse(filename, format="ttl")
+    convert_to_rdf(data, OUTPUT_FILEPATH)
+    g = Graph().parse(OUTPUT_FILEPATH, format="ttl")
     assert len(g) > 0
     # asset there is a file named test_output.ttl in the data directory
     assert os.path.isfile
-
-    # clean up
-    os.remove(filename)

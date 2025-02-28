@@ -17,7 +17,7 @@ def convert_to_rdf(data, output_file: str, base: str = "http://fakebase"):
     JSON-LD format, and serializes it into Turtle format, saving it to the specified file.
 
     Args:
-        data (dict): The JSON-serializable data structure to convert to RDF.
+        data (list|dict): The JSON-serializable data structure to convert to RDF.
         output_file (str): The file path where the Turtle (.ttl) formatted RDF data will be saved.
         base (str): The base URI for the RDF graph, used as a prefix in generated RDF triples.
                     Defaults to "http://fakebase".
