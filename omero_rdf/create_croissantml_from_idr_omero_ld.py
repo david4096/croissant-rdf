@@ -2,7 +2,7 @@ import json
 import mlcroissant as mlc
 import re
 
-omero_jsonld = "data\omero_project_801.jsonld"
+omero_jsonld = "example_data\omero_project_801.jsonld"
 croissant_path = omero_jsonld.replace(".jsonld", "_croissant.json")
 
 
@@ -39,14 +39,14 @@ distribution = [
     mlc.FileSet(
         id="image-example-planes",
         name="image-example-planes",
-        description="Example data planes, template. Use OMERO CLI and Images ID to download the full image (WARNING: might be Terrabytes in size!)",
+        description="Example data planes, template. Use OMERO CLI and Images ID to download the full image.",
         encoding_format="application/json",
         includes=omero_jsonld_dict["images_data"],
     ),
     mlc.FileSet(
         id="image-metadata",
         name="image-metadata",
-        description="Metadata of the images in the project. Use OMERO CLI and Images ID to download the full image (WARNING: might be Terrabytes in size!)",
+        description="Metadata of the images in the project.",
         encoding_format="application/json",
         includes=omero_jsonld_dict["images_metadata"],
     ),
@@ -54,6 +54,7 @@ distribution = [
 
 filtered_authors = filter_annotations(annotations_dict, ["author", "creator"])
 authors = filtered_authors[0][1] if len(filtered_authors) > 0 else "Unknown"
+authors = [{"@type": "Person", "name": a.strip()} for a in authors.split(",")]
 
 filtered_license = filter_annotations(annotations_dict, ["license"])
 license = filtered_license[0][1] if len(filtered_license) > 0 else "Unknown"
