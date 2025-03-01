@@ -1,5 +1,6 @@
 # 🥐 croissant-rdf
 
+[![PyPI - Version](https://img.shields.io/pypi/v/croissant-rdf.svg?logo=pypi&label=PyPI&logoColor=silver)](https://pypi.org/project/croissant-rdf/)
 [![Tests](https://github.com/david4096/croissant-rdf/actions/workflows/test.yml/badge.svg)](https://github.com/david4096/croissant-rdf/actions/workflows/test.yml)
 
 Come see our poster at [SWAT4HCLS](https://www.swat4ls.org)!
@@ -57,7 +58,7 @@ export KAGGLE_USERNAME={YOUR_USERNAME}
 export KAGGLE_KEY={YOUR_KEY}
 kaggle-rdf --fname kaggle.ttl --limit 10
 
-# Optionally you can provide a keyword to filter the dataset search
+# Optionally you can provide a positional argument to filter the dataset search
 kaggle-rdf --fname kaggle.ttl --limit 10 covid
 ```
 
@@ -84,13 +85,19 @@ This will output a Turtle file called `cwl.ttl` in your local directory.
 ### Using Docker to run a Jupyter server
 To launch a jupyter notebook server to run and develop on the project locally run the following:
 
-```
-docker build -t croissant-rdf-jupyter -f Dockerfile.jupyter .
+Build:
 
+```sh
+docker build -t croissant-rdf-jupyter -f notebooks/Dockerfile .
+```
+
+Run Jupyter:
+
+```sh
 docker run -p 8888:8888 -v $(pwd):/app croissant-rdf-jupyter
 ```
 The run command works for mac and linux for windows in PowerShell you need to use the following:
-```
+```sh
 docker run -p 8888:8888 -v ${PWD}:/app croissant-rdf-jupyter
 ```
 
@@ -112,11 +119,12 @@ SELECT DISTINCT ?b WHERE {?a ?b ?c}
 2. To retrieve information about a dataset, including its name, predicates, and the count of objects associated with each predicate. Includes a filters in the results to include only resources that are of type <https://schema.org/Dataset>.
 
 ```sparql
+PREFIX schema: <https://schema.org/>
 SELECT ?name ?p (count(?o) as ?predicate_count)
 WHERE {
-    ?dataset <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.org/Dataset> .
-    ?dataset <https://schema.org/name> ?name .
-    ?dataset ?p ?o .
+    ?dataset a schema:Dataset ;
+        schema:name ?name ;
+        ?p ?o .
 }
 GROUP BY ?p ?dataset
 ```
@@ -124,29 +132,32 @@ GROUP BY ?p ?dataset
 3. To retrieve distinct values with the keyword "bio" associated with the property <https://schema.org/keywords> regardless of the case.
 
 ```sparql
-SELECT DISTINCT ?c 
+PREFIX schema: <https://schema.org/>
+SELECT DISTINCT ?keyword
 WHERE {
-  ?a <https://schema.org/keywords> ?c .
-  FILTER(CONTAINS(LCASE(?c), "bio"))
+    ?s schema:keywords ?keyword .
+    FILTER(CONTAINS(LCASE(?keyword), "bio"))
 }
 ```
 
 4. To retrieve distinct values for croissant columns associated with the predicate.
 
 ```sparql
-SELECT DISTINCT ?c 
+PREFIX cr: <http://mlcommons.org/croissant/>
+SELECT DISTINCT ?column
 WHERE {
-  ?a <http://mlcommons.org/croissant/column> ?c
+  	?s cr:column ?column
 }
 ```
 
 5. To retrieves the names of creators and the count of items they are associated with.
 
 ```sparql
+PREFIX schema: <https://schema.org/>
 SELECT ?creatorName (COUNT(?a) AS ?count)
 WHERE {
-  ?a <https://schema.org/creator> ?c.
-  ?c <https://schema.org/name> ?creatorName.
+    ?s schema:creator ?creator .
+    ?creator schema:name ?creatorName .
 }
 GROUP BY ?creatorName
 ORDER BY DESC(?count)
@@ -156,7 +167,7 @@ ORDER BY DESC(?count)
 
 We welcome contributions! Please open an issue or submit a pull request!
 
-## Development
+### Development
 
 > We recommend to use [`uv`](https://docs.astral.sh/uv/getting-started/installation/) for working in development, it will handle virtual environments and dependencies automatically and really quickly.
 

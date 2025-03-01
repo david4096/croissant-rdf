@@ -12,7 +12,7 @@ notebooks:
   - format: JUPYTER
     language: PYTHON
     name: croissant-rdf-example
-    path: /example.ipynb
+    path: notebooks/example.ipynb
     topic: This notebook demonstrates how to use croissant-rdf
     authors:
       - orcid: 0000-0001-6683-2270

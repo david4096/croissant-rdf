@@ -4,12 +4,7 @@ from unittest.mock import ANY, MagicMock, patch
 import pytest
 from rdflib import Graph
 
-from croissant_rdf.huggingface import generate_ttl
-from croissant_rdf.huggingface.fetch_data import (
-    croissant_dataset,
-    fetch_datasets,
-    get_datasets,
-)
+from croissant_rdf.providers import HuggingfaceHarvester
 
 
 @pytest.fixture
@@ -27,7 +22,8 @@ def mock_response():
 
 def test_mock_croissant_dataset(mock_response):
     with patch("requests.get", return_value=mock_response) as mock_get:
-        result = croissant_dataset("test_dataset")
+        harvester = HuggingfaceHarvester()
+        result = harvester.fetch_dataset_croissant("test_dataset")
 
         mock_get.assert_called_once_with(
             "https://huggingface.co/api/datasets/test_dataset/croissant", headers=ANY, timeout=30
@@ -39,13 +35,12 @@ def test_mock_fetch_datasets(mock_response):
     mock_dataset = MagicMock()
     mock_dataset.id = "test_dataset"
 
-    with patch("croissant_rdf.huggingface.fetch_data.get_datasets", return_value=[mock_dataset]) as mock_get, patch(
-        "croissant_rdf.huggingface.fetch_data.croissant_dataset",
+    with patch(
+        "croissant_rdf.providers.HuggingfaceHarvester.fetch_dataset_croissant",
         return_value=mock_response.json(),
     ):
-        result = fetch_datasets(limit=1)
-
-        mock_get.assert_called_once_with(1, None)
+        harvester = HuggingfaceHarvester(limit=1)
+        result = harvester.fetch_datasets_croissant()
         assert len(result) == 1
         assert result[0] == {
             "name": "test_dataset",
@@ -54,25 +49,29 @@ def test_mock_fetch_datasets(mock_response):
 
 
 def test_mock_fetch_datasets_empty():
-    with patch("croissant_rdf.huggingface.fetch_data.get_datasets", return_value=[]):
-        result = fetch_datasets(limit=0)
+    with patch("croissant_rdf.providers.HuggingfaceHarvester.fetch_dataset_croissant", return_value=[]):
+        harvester = HuggingfaceHarvester(limit=0)
+        result = harvester.fetch_datasets_croissant()
         assert result == []
 
 
 def test_get_datasets():
-    datasets = get_datasets(5)
+    harvester = HuggingfaceHarvester(limit=5)
+    datasets = harvester.fetch_datasets_croissant()
     assert len(datasets) == 5
 
 
 def test_fetch_croissant_dataset():
-    result = croissant_dataset("fka/awesome-chatgpt-prompts", False)
+    harvester = HuggingfaceHarvester(use_api_key=False)
+    result = harvester.fetch_dataset_croissant("fka/awesome-chatgpt-prompts")
     assert len(result) > 0
     assert "https://schema.org/" in result["@context"]["@vocab"]
     assert "http://mlcommons.org/croissant/" in result["@context"]["cr"]
 
 
 def test_fetch_data_workflow():
-    croissant_dataset = fetch_datasets(5)
+    harvester = HuggingfaceHarvester(limit=5)
+    croissant_dataset = harvester.fetch_datasets_croissant()
     assert len(croissant_dataset) == 5
     for dataset in croissant_dataset:
         if "error" not in dataset:
@@ -85,7 +84,8 @@ OUTPUT_FILEPATH = "./tests/test_output.ttl"
 
 def test_generate_ttl():
     """Test the complete generate_ttl workflow."""
-    file_ttl = generate_ttl(OUTPUT_FILEPATH, 3, False)
+    harvester = HuggingfaceHarvester(fname=OUTPUT_FILEPATH, limit=3, use_api_key=False)
+    file_ttl = harvester.generate_ttl()
     assert os.path.isfile(OUTPUT_FILEPATH)
     assert os.path.isfile(file_ttl)
     g = Graph().parse(OUTPUT_FILEPATH, format="ttl")

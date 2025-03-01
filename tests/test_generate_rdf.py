@@ -3,8 +3,7 @@ import os
 import pytest
 from rdflib import Graph
 
-from croissant_rdf.generate_rdf import convert_to_rdf
-from croissant_rdf.huggingface.fetch_data import fetch_datasets
+from croissant_rdf.providers import HuggingfaceHarvester
 
 OUTPUT_FILEPATH = "./tests/test_output.ttl"
 
@@ -41,7 +40,8 @@ def test_convert_to_rdf_mock_data():
             "name": "test_dataset_3",
         },
     ]
-    file_ttl = convert_to_rdf(data, OUTPUT_FILEPATH)
+    harvester = HuggingfaceHarvester(fname=OUTPUT_FILEPATH)
+    file_ttl = harvester.convert_to_rdf(data)
     # assert there is a file named test_output.ttl in the data directory
     assert os.path.isfile(OUTPUT_FILEPATH)
     assert os.path.isfile(file_ttl)
@@ -53,7 +53,8 @@ def test_convert_to_rdf_mock_data():
 def test_convert_to_rdf_mock_data_empty():
     """Test with empty data"""
     data = []
-    convert_to_rdf(data, OUTPUT_FILEPATH)
+    harvester = HuggingfaceHarvester(fname=OUTPUT_FILEPATH)
+    harvester.convert_to_rdf(data)
     assert os.path.isfile(OUTPUT_FILEPATH)
     g = Graph().parse(OUTPUT_FILEPATH, format="ttl")
     assert len(g) == 0
@@ -61,9 +62,9 @@ def test_convert_to_rdf_mock_data_empty():
 
 def test_convert_to_rdf_real_data():
     """Test data from HuggingFace, does not require API key"""
-    data = fetch_datasets(limit=5)
-    convert_to_rdf(data, OUTPUT_FILEPATH)
+    harvester = HuggingfaceHarvester(fname=OUTPUT_FILEPATH, limit=5)
+    data = harvester.fetch_datasets_croissant()
+    harvester.convert_to_rdf(data)
+    assert os.path.isfile(OUTPUT_FILEPATH)
     g = Graph().parse(OUTPUT_FILEPATH, format="ttl")
     assert len(g) > 0
-    # asset there is a file named test_output.ttl in the data directory
-    assert os.path.isfile
