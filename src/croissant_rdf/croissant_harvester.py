@@ -11,6 +11,7 @@ from rich.progress import track
 
 from croissant_rdf.utils import chunk_data, logger
 
+DEFAULT_BASE_URL = "https://w3id.org/croissant-rdf/data/"
 
 class CroissantHarvester(ABC):
     """Abstract base class for harvesting and processing Croissant metadata for datasets.
@@ -28,7 +29,7 @@ class CroissantHarvester(ABC):
         limit: int = 10,
         use_api_key: bool = True,
         search: Optional[str] = None,
-        base_url: str = "https://w3id.org/croissant-rdf/data/",
+        base_url: str = DEFAULT_BASE_URL,
         serialization: str = "turtle",
         api_url: Optional[str] = None,
     ):
@@ -205,6 +206,13 @@ class CroissantHarvester(ABC):
             required=False,
             default="turtle",
             help="The serialization format of the output RDF (turtle, n3, nt, xml, json-ld).",
+        )
+        parser.add_argument(
+            "--base",
+            type=str,
+            required=False,
+            default=DEFAULT_BASE_URL,
+            help="The base URL used to .",
         )
         parser.add_argument(
             "--use_api_key",
