@@ -521,6 +521,7 @@ dependencies = [
     { name = "openml" },
     { name = "rdflib", version = "6.3.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.8.1'" },
     { name = "rdflib", version = "7.1.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.8.1'" },
+    { name = "requests" },
     { name = "rich" },
 ]
 
@@ -540,6 +541,7 @@ requires-dist = [
     { name = "kaggle", specifier = ">=1.6.17" },
     { name = "openml", specifier = ">=0.15.1" },
     { name = "rdflib", specifier = ">=6.0.0" },
+    { name = "requests", specifier = ">=2.32.3" },
     { name = "rich", specifier = ">=13.9.4" },
 ]
 

@@ -15,8 +15,8 @@ class KaggleHarvester(CroissantHarvester):
         return api.dataset_list(search=self.search)[: self.limit]
 
     def fetch_dataset_croissant(self, dataset_id: str):
-        response = requests.get(self.api_url + str(dataset_id) + "/croissant/download", timeout=30)
-        return response.json() if response.status_code == 200 else None
+        return requests.get(self.api_url + str(dataset_id) + "/croissant/download", timeout=30)
+        # return response.json() if response.status_code == 200 else None
 
 
 def main():

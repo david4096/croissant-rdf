@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, List, Optional, Union
 
+import requests
 from rdflib import Graph, URIRef
 from rich.progress import track
 
@@ -28,6 +29,7 @@ class CroissantHarvester(ABC):
         use_api_key: bool = True,
         search: Optional[str] = None,
         base_url: str = "https://w3id.org/croissant-rdf/data/",
+        serialization: str = "turtle",
         api_url: Optional[str] = None,
     ):
         """Initialize a Croissant metadata Harvester instance for a specific provider.
@@ -44,6 +46,7 @@ class CroissantHarvester(ABC):
         self.limit = limit
         self.search = search
         self.base_url = base_url
+        self.serialization = serialization
         self.use_api_key = use_api_key
         self.api_url = api_url if api_url is not None else self.__class__.api_url
 
@@ -53,12 +56,38 @@ class CroissantHarvester(ABC):
         pass
 
     @abstractmethod
-    def fetch_dataset_croissant(self, dataset_id: str) -> Optional[Union[Dict, List]]:
-        """Fetch the croissant metadata for a specific dataset from the provider.
+    def fetch_dataset_croissant(self, dataset_id: str) -> requests.Response:
+        """Fetch the Croissant metadata for a specific dataset from the provider using a HTTP request.
 
         Args:
-            dataset_id (str): The ID of the dataset."""
+            dataset_id (str): The ID of the dataset.
+
+        Returns:
+            requests.Response: The response from the request to retrieve metadata."""
         pass
+
+    def fetch_dataset_croissant_handler(self, dataset_id: str) -> Optional[Union[Dict, List]]:
+        """Run the function to fetch Croissant JSON-LD from URL, and catch exceptions to return them as strings.
+
+        Args:
+            dataset_id (str): The ID of the dataset.
+
+        Returns:
+            Optional[Union[Dict, List, str]]: The JSON-LD response as list/dict, or an error message as str.
+        """
+        resp_json = {}
+        try:
+            response = self.fetch_dataset_croissant(dataset_id)
+            resp_json = response.json()
+            response.raise_for_status()
+            return resp_json
+        except Exception as e:
+            if resp_json.get("error"):
+                return f"Error for {dataset_id}: {resp_json['error']}"
+            if not str(e):
+                return f"Empty error for {dataset_id}"
+            return f"Error for {dataset_id}: {e!s}"
+
 
     def fetch_datasets_croissant(self) -> List[Dict]:
         """Fetch metadata for multiple datasets, using threading where applicable."""
@@ -68,21 +97,25 @@ class CroissantHarvester(ABC):
         except Exception as e:
             logger.error(f"Error fetching datasets: {e}")
             return []
-
         results = []
+        errors = []
         try:
             with ThreadPoolExecutor(max_workers=4) as executor:
-                futures = {executor.submit(self.fetch_dataset_croissant, dataset): dataset for dataset in datasets}
+                futures = {executor.submit(self.fetch_dataset_croissant_handler, dataset): dataset for dataset in datasets}
                 for future in track(as_completed(futures), "Fetching datasets metadata", len(futures)):
-                    dataset_id = futures[future]
-                    try:
-                        results.append(future.result())
-                    except Exception as e:
-                        logger.error(f"Error processing dataset {dataset_id}: {e}")
+                    result = future.result()
+                    if isinstance(result, str):
+                        errors.append(result)
+                    else:
+                        results.append(result)
         except KeyboardInterrupt:
             logger.warning("Process interrupted by user. Shutting down...")
             executor.shutdown(wait=False)
             raise
+        if errors:
+            logger.warning(
+                f"Error fetching Croissant metadata JSON-LD for {len(errors)} URLs:\n- {'\n- '.join(errors)}"
+            )
         return results
 
     def convert_to_rdf(self, data) -> str:
@@ -113,7 +146,7 @@ class CroissantHarvester(ABC):
             f"Parsing completed in {time.time() - start_time:.2f}s, writing {len(g)} RDF triples to file {self.fname}"
         )
         start_time = time.time()
-        g.serialize(destination=self.fname, format="ttl")
+        g.serialize(destination=self.fname, format=self.serialization)
         logger.info(f"Serialization completed in {time.time() - start_time:.2f}s")
         return self.fname
 
@@ -130,6 +163,7 @@ class CroissantHarvester(ABC):
         try:
             start_time = time.time()
             datasets = self.fetch_datasets_croissant()
+            # datasets = asyncio.run(self.afetch_datasets_croissant())
             logger.info(
                 f"Retrieved Croissant metadata JSON-LD for {len(datasets)} datasets in {time.time() - start_time:.2f}s"
             )
@@ -142,8 +176,8 @@ class CroissantHarvester(ABC):
 
     @classmethod
     def cli(cls):
-        """Parse command-line arguments and generate a turtle file from harvested Croissant metadata."""
-        parser = argparse.ArgumentParser(description="Generate a Turtle file from datasets.")
+        """Parse command-line arguments and generate a RDF file from harvested Croissant metadata."""
+        parser = argparse.ArgumentParser(description="Generate a RDF file from datasets Croissant metadata.")
         parser.add_argument(
             "search",
             type=str,
@@ -166,6 +200,13 @@ class CroissantHarvester(ABC):
             help="The maximum number of datasets to fetch.",
         )
         parser.add_argument(
+            "--format",
+            type=str,
+            required=False,
+            default="turtle",
+            help="The serialization format of the output RDF (turtle, n3, nt, xml, json-ld).",
+        )
+        parser.add_argument(
             "--use_api_key",
             type=bool,
             required=False,
@@ -179,5 +220,48 @@ class CroissantHarvester(ABC):
             limit=args.limit,
             use_api_key=args.use_api_key,
             search=args.search,
+            serialization=args.format,
         )
         harvester.generate_ttl()
+
+    # # TODO: using async fetching of Croissant metadata with httpx?
+    # import asyncio
+    # import httpx
+    # # @abstractmethod
+    # async def afetch_dataset_croissant(self, dataset_id: str, client: httpx.AsyncClient) -> Optional[Union[Dict, List, str]]:
+    #     """Example for HuggingFace to test async fetching."""
+    #     url = self.api_url + dataset_id + "/croissant"
+    #     response = None
+    #     try:
+    #         response = await client.get(url, headers=self.headers if self.use_api_key else {}, timeout=30)
+    #         response.raise_for_status()
+    #         return response.json()
+    #     except Exception as e:
+    #         if response and response.json().get("error"):
+    #             return f"Error for {url}: {response.json()['error']}"
+    #         if not str(e):
+    #             return "Empty error for " + url
+    #         return str(e)
+
+    # async def afetch_datasets_croissant(self) -> List[Dict]:
+    #     """Asynchronously fetch metadata for multiple datasets concurrently."""
+    #     try:
+    #         datasets_ids = self.fetch_datasets_ids()
+    #         logger.info(f"Retrieved {len(datasets_ids)} dataset IDs.")
+    #     except Exception as e:
+    #         logger.error(f"Error fetching dataset IDs: {e}")
+    #         return []
+    #     results = []
+    #     errors = []
+    #     async with httpx.AsyncClient(follow_redirects=True, limits=httpx.Limits(max_connections=20)) as client:
+    #         # Create tasks for each dataset using the shared client.
+    #         tasks = [self.afetch_dataset_croissant(dataset_id, client) for dataset_id in datasets_ids]
+    #         for future in track(asyncio.as_completed(tasks), total=len(tasks), description="Fetching datasets metadata"):
+    #             result = await future
+    #             if isinstance(result, str):
+    #                 errors.append(result)
+    #             else:
+    #                 results.append(result)
+    #     if errors:
+    #         logger.warning(f"Error fetching Croissant metadata JSON-LD for {len(errors)} URLs:\n{'\n'.join(errors)}")
+    #     return results

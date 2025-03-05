@@ -16,10 +16,20 @@ class HuggingfaceHarvester(CroissantHarvester):
         return [dataset.id for dataset in list(list_datasets(limit=self.limit, search=self.search))]
 
     def fetch_dataset_croissant(self, dataset_id: str):
-        response = requests.get(
-            self.api_url + dataset_id + "/croissant", headers=self.headers if self.use_api_key else {}, timeout=30
-        )
-        return response.json()
+        url = self.api_url + dataset_id + "/croissant"
+        return requests.get(url, headers=self.headers if self.use_api_key else {}, timeout=30)
+        # resp_json = None
+        # try:
+        #     response = requests.get(url, headers=self.headers if self.use_api_key else {}, timeout=30)
+        #     resp_json = response.json()
+        #     response.raise_for_status()
+        #     return resp_json
+        # except Exception as e:
+        #     if resp_json and resp_json.get("error"):
+        #         return f"Error for {url}: {resp_json['error']}"
+        #     if not str(e):
+        #         return "Empty error for " + url
+        #     return f"Error for {url}: {e!s}"
 
 
 def main():

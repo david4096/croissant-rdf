@@ -23,7 +23,7 @@ def mock_response():
 def test_mock_croissant_dataset(mock_response):
     with patch("requests.get", return_value=mock_response) as mock_get:
         harvester = HuggingfaceHarvester()
-        result = harvester.fetch_dataset_croissant("test_dataset")
+        result = harvester.fetch_dataset_croissant("test_dataset").json()
 
         mock_get.assert_called_once_with(
             "https://huggingface.co/api/datasets/test_dataset/croissant", headers=ANY, timeout=30
@@ -32,13 +32,7 @@ def test_mock_croissant_dataset(mock_response):
 
 
 def test_mock_fetch_datasets(mock_response):
-    mock_dataset = MagicMock()
-    mock_dataset.id = "test_dataset"
-
-    with patch(
-        "croissant_rdf.providers.HuggingfaceHarvester.fetch_dataset_croissant",
-        return_value=mock_response.json(),
-    ):
+    with patch("requests.get", return_value=mock_response):
         harvester = HuggingfaceHarvester(limit=1)
         result = harvester.fetch_datasets_croissant()
         assert len(result) == 1
@@ -56,23 +50,23 @@ def test_mock_fetch_datasets_empty():
 
 
 def test_get_datasets():
-    harvester = HuggingfaceHarvester(limit=5)
+    harvester = HuggingfaceHarvester(limit=10)
     datasets = harvester.fetch_datasets_croissant()
-    assert len(datasets) == 5
+    assert len(datasets) > 0
 
 
 def test_fetch_croissant_dataset():
     harvester = HuggingfaceHarvester(use_api_key=False)
-    result = harvester.fetch_dataset_croissant("fka/awesome-chatgpt-prompts")
+    result = harvester.fetch_dataset_croissant("fka/awesome-chatgpt-prompts").json()
     assert len(result) > 0
     assert "https://schema.org/" in result["@context"]["@vocab"]
     assert "http://mlcommons.org/croissant/" in result["@context"]["cr"]
 
 
 def test_fetch_data_workflow():
-    harvester = HuggingfaceHarvester(limit=5)
+    harvester = HuggingfaceHarvester(limit=10)
     croissant_dataset = harvester.fetch_datasets_croissant()
-    assert len(croissant_dataset) == 5
+    assert len(croissant_dataset) > 0
     for dataset in croissant_dataset:
         if "error" not in dataset:
             assert "https://schema.org/" in dataset["@context"]["@vocab"]

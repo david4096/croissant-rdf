@@ -37,7 +37,7 @@ def mock_response():
 def test_mock_croissant_dataset(mock_response):
     with patch("requests.get", return_value=mock_response) as mock_get:
         harvester = KaggleHarvester(limit=1)
-        result = harvester.fetch_dataset_croissant("test_dataset")
+        result = harvester.fetch_dataset_croissant("test_dataset").json()
 
         mock_get.assert_called_once_with("https://www.kaggle.com/datasets/test_dataset/croissant/download", timeout=30)
         assert result == test_metadata_kaggle
@@ -47,10 +47,7 @@ def test_mock_fetch_datasets(mock_response):
     mock_dataset = MagicMock()
     mock_dataset.id = "test_dataset"
 
-    with patch(
-        "croissant_rdf.providers.KaggleHarvester.fetch_dataset_croissant",
-        return_value=mock_response.json(),
-    ):
+    with patch("requests.get", return_value=mock_response):
         harvester = KaggleHarvester(limit=1)
         result = harvester.fetch_datasets_croissant()
         assert len(result) == 1
@@ -62,7 +59,7 @@ OUTPUT_FILEPATH = "./tests/test_output.ttl"
 
 def test_generate_ttl(mock_response):
     """Test the complete generate_ttl workflow."""
-    with patch("croissant_rdf.providers.KaggleHarvester.fetch_dataset_croissant", return_value=mock_response.json()):
+    with patch("requests.get", return_value=mock_response):
         harvester = KaggleHarvester(fname=OUTPUT_FILEPATH, limit=3, use_api_key=False)
         file_ttl = harvester.generate_ttl()
         assert os.path.isfile(OUTPUT_FILEPATH)

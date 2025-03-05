@@ -25,10 +25,9 @@ class DataverseHarvester(CroissantHarvester):
 
     def fetch_dataset_croissant(self, dataset_id: str):
         # https://demo.dataverse.org/api/datasets/export?exporter=croissant&persistentId=doi:10.70122/FK2/JFASVV
-        response = requests.get(
+        return requests.get(
             f"{self.api_url}/api/datasets/export?exporter=croissant&persistentId={dataset_id}", timeout=30
         )
-        return response.json()
 
 
 def main():

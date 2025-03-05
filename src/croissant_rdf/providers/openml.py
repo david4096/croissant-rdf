@@ -22,8 +22,7 @@ class OpenmlHarvester(CroissantHarvester):
         # 44593 = https://data.openml.org/datasets/0004/44593/dataset_44593_croissant.json
         extended_id = f"{int(dataset_id):08d}"
         extended_id = f"{extended_id[:4]}/{extended_id[4:] if len(dataset_id) < 5 else dataset_id}"
-        response = requests.get(self.api_url + extended_id + f"/dataset_{dataset_id}_croissant.json", timeout=30)
-        return response.json()
+        return requests.get(self.api_url + extended_id + f"/dataset_{dataset_id}_croissant.json", timeout=30)
 
 
 def main():
