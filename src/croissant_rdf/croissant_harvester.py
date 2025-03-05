@@ -115,7 +115,7 @@ class CroissantHarvester(ABC):
             raise
         if errors:
             logger.warning(
-                f"Error fetching Croissant metadata JSON-LD for {len(errors)} URLs:\n- {'\n- '.join(errors)}"
+                f"Error fetching Croissant metadata JSON-LD for {len(errors)} URLs:\n" + "\n".join(errors)
             )
         return results
 
