@@ -8,12 +8,6 @@ from croissant_rdf.providers import HuggingfaceHarvester
 
 
 @pytest.fixture
-def mock_env_vars():
-    with patch.dict("os.environ", {"HF_API_KEY": "fake_api_key"}):
-        yield
-
-
-@pytest.fixture
 def mock_response():
     mock = MagicMock()
     mock.json.return_value = {"name": "test_dataset", "description": "A test dataset"}
