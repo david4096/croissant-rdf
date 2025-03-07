@@ -1,6 +1,6 @@
 [project]
 name = "croissant-rdf"
-version = "0.1.1"
+version = "0.1.2"
 description = "Tools for working with RDF from Croissant JSON-LD resources."
 readme = "README.md"
 license = { file = "LICENSE" }
