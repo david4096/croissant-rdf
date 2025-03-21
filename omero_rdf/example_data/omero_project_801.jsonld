@@ -1,0 +1,494 @@
+{
+    "@type": "Project",
+    "@id": "https://idr.openmicroscopy.org/api/v0/m/projects/801",
+    "omero:details": {
+        "@type": "TBD#Details",
+        "owner": {
+            "@type": "http://www.openmicroscopy.org/Schemas/OME/2016-06#Experimenter",
+            "@id": 2,
+            "omero:details": {
+                "@type": "TBD#Details",
+                "permissions": {
+                    "@type": "TBD#Permissions",
+                    "perm": "rwr---",
+                    "canAnnotate": false,
+                    "canDelete": false,
+                    "canEdit": false,
+                    "canLink": false,
+                    "isWorldWrite": false,
+                    "isWorldRead": false,
+                    "isGroupWrite": false,
+                    "isGroupRead": true,
+                    "isGroupAnnotate": false,
+                    "isUserWrite": true,
+                    "isUserRead": true
+                }
+            },
+            "FirstName": "Public",
+            "MiddleName": "",
+            "LastName": "data",
+            "Email": "idr-project@lists.openmicroscopy.org.uk",
+            "Institution": "IDR Project",
+            "UserName": "demo"
+        },
+        "group": {
+            "@type": "http://www.openmicroscopy.org/Schemas/OME/2016-06#ExperimenterGroup",
+            "@id": 3,
+            "omero:details": {
+                "@type": "TBD#Details",
+                "permissions": {
+                    "@type": "TBD#Permissions",
+                    "perm": "rwr---",
+                    "canAnnotate": false,
+                    "canDelete": false,
+                    "canEdit": false,
+                    "canLink": false,
+                    "isWorldWrite": false,
+                    "isWorldRead": false,
+                    "isGroupWrite": false,
+                    "isGroupRead": true,
+                    "isGroupAnnotate": false,
+                    "isUserWrite": true,
+                    "isUserRead": true
+                }
+            },
+            "Name": "Public"
+        },
+        "permissions": {
+            "@type": "TBD#Permissions",
+            "perm": "rwr---",
+            "canAnnotate": false,
+            "canDelete": false,
+            "canEdit": false,
+            "canLink": false,
+            "isWorldWrite": false,
+            "isWorldRead": false,
+            "isGroupWrite": false,
+            "isGroupRead": true,
+            "isGroupAnnotate": false,
+            "isUserWrite": true,
+            "isUserRead": true
+        }
+    },
+    "Annotations": [
+        {
+            "@type": "http://www.openmicroscopy.org/Schemas/OME/2016-06#MapAnnotation",
+            "@id": 20516239,
+            "omero:details": {
+                "@type": "TBD#Details",
+                "owner": {
+                    "@type": "http://www.openmicroscopy.org/Schemas/OME/2016-06#Experimenter",
+                    "@id": 2,
+                    "omero:details": {
+                        "@type": "TBD#Details",
+                        "permissions": {
+                            "@type": "TBD#Permissions",
+                            "perm": "rwr---",
+                            "canAnnotate": false,
+                            "canDelete": false,
+                            "canEdit": false,
+                            "canLink": false,
+                            "isWorldWrite": false,
+                            "isWorldRead": false,
+                            "isGroupWrite": false,
+                            "isGroupRead": true,
+                            "isGroupAnnotate": false,
+                            "isUserWrite": true,
+                            "isUserRead": true
+                        }
+                    },
+                    "FirstName": "Public",
+                    "MiddleName": "",
+                    "LastName": "data",
+                    "Email": "idr-project@lists.openmicroscopy.org.uk",
+                    "Institution": "IDR Project",
+                    "UserName": "demo"
+                },
+                "group": {
+                    "@type": "http://www.openmicroscopy.org/Schemas/OME/2016-06#ExperimenterGroup",
+                    "@id": 3,
+                    "omero:details": {
+                        "@type": "TBD#Details",
+                        "permissions": {
+                            "@type": "TBD#Permissions",
+                            "perm": "rwr---",
+                            "canAnnotate": false,
+                            "canDelete": false,
+                            "canEdit": false,
+                            "canLink": false,
+                            "isWorldWrite": false,
+                            "isWorldRead": false,
+                            "isGroupWrite": false,
+                            "isGroupRead": true,
+                            "isGroupAnnotate": false,
+                            "isUserWrite": true,
+                            "isUserRead": true
+                        }
+                    },
+                    "Name": "Public"
+                },
+                "permissions": {
+                    "@type": "TBD#Permissions",
+                    "perm": "rwr---",
+                    "canAnnotate": false,
+                    "canDelete": false,
+                    "canEdit": false,
+                    "canLink": false,
+                    "isWorldWrite": false,
+                    "isWorldRead": false,
+                    "isGroupWrite": false,
+                    "isGroupRead": true,
+                    "isGroupAnnotate": false,
+                    "isUserWrite": true,
+                    "isUserRead": true
+                }
+            },
+            "Namespace": "idr.openmicroscopy.org/study/info",
+            "Value": [
+                [
+                    "Sample Type",
+                    "cell"
+                ],
+                [
+                    "Organism",
+                    "Mus musculus"
+                ],
+                [
+                    "Study Title",
+                    "NesSys: a new set of tools for the automated detection of nuclei within intact tissues and dense 3D cultures"
+                ],
+                [
+                    "Study Type",
+                    "image segmentation"
+                ],
+                [
+                    "Imaging Method",
+                    "confocal microscopy"
+                ],
+                [
+                    "Publication Title",
+                    "NesSys: a novel method for accurate nuclear segmentation in 3D"
+                ],
+                [
+                    "Publication Authors",
+                    "Blin G, Sadurska D, Migueles RP, Chen N, Watson JA, Lowell S"
+                ],
+                [
+                    "PubMed ID",
+                    "31398189 https://www.ncbi.nlm.nih.gov/pubmed/31398189"
+                ],
+                [
+                    "PMC ID",
+                    "PMC6703695 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6703695"
+                ],
+                [
+                    "Publication DOI",
+                    "10.1371/journal.pbio.3000388 https://doi.org/10.1371/journal.pbio.3000388"
+                ],
+                [
+                    "Release Date",
+                    "2019-06-17"
+                ],
+                [
+                    "License",
+                    "CC BY 4.0 https://creativecommons.org/licenses/by/4.0/"
+                ],
+                [
+                    "Copyright",
+                    "Blin et al."
+                ],
+                [
+                    "Data Publisher",
+                    "University of Dundee"
+                ],
+                [
+                    "Data DOI",
+                    "10.17867/10000125 https://doi.org/10.17867/10000125"
+                ],
+                [
+                    "External URL",
+                    "https://framagit.org/pickcellslab/nessys"
+                ],
+                [
+                    "Annotation File",
+                    "idr0062-experimentA-annotation.csv https://github.com/IDR/idr0062-blin-nuclearsegmentation/blob/HEAD/experimentA/idr0062-experimentA-annotation.csv"
+                ]
+            ]
+        },
+        {
+            "@type": "http://www.openmicroscopy.org/Schemas/OME/2016-06#FileAnnotation",
+            "@id": 20516263,
+            "omero:details": {
+                "@type": "TBD#Details",
+                "owner": {
+                    "@type": "http://www.openmicroscopy.org/Schemas/OME/2016-06#Experimenter",
+                    "@id": 2,
+                    "omero:details": {
+                        "@type": "TBD#Details",
+                        "permissions": {
+                            "@type": "TBD#Permissions",
+                            "perm": "rwr---",
+                            "canAnnotate": false,
+                            "canDelete": false,
+                            "canEdit": false,
+                            "canLink": false,
+                            "isWorldWrite": false,
+                            "isWorldRead": false,
+                            "isGroupWrite": false,
+                            "isGroupRead": true,
+                            "isGroupAnnotate": false,
+                            "isUserWrite": true,
+                            "isUserRead": true
+                        }
+                    },
+                    "FirstName": "Public",
+                    "MiddleName": "",
+                    "LastName": "data",
+                    "Email": "idr-project@lists.openmicroscopy.org.uk",
+                    "Institution": "IDR Project",
+                    "UserName": "demo"
+                },
+                "group": {
+                    "@type": "http://www.openmicroscopy.org/Schemas/OME/2016-06#ExperimenterGroup",
+                    "@id": 3,
+                    "omero:details": {
+                        "@type": "TBD#Details",
+                        "permissions": {
+                            "@type": "TBD#Permissions",
+                            "perm": "rwr---",
+                            "canAnnotate": false,
+                            "canDelete": false,
+                            "canEdit": false,
+                            "canLink": false,
+                            "isWorldWrite": false,
+                            "isWorldRead": false,
+                            "isGroupWrite": false,
+                            "isGroupRead": true,
+                            "isGroupAnnotate": false,
+                            "isUserWrite": true,
+                            "isUserRead": true
+                        }
+                    },
+                    "Name": "Public"
+                },
+                "permissions": {
+                    "@type": "TBD#Permissions",
+                    "perm": "rwr---",
+                    "canAnnotate": false,
+                    "canDelete": false,
+                    "canEdit": false,
+                    "canLink": false,
+                    "isWorldWrite": false,
+                    "isWorldRead": false,
+                    "isGroupWrite": false,
+                    "isGroupRead": true,
+                    "isGroupAnnotate": false,
+                    "isUserWrite": true,
+                    "isUserRead": true
+                }
+            },
+            "Description": "bulk_annotations",
+            "Namespace": "openmicroscopy.org/omero/bulk_annotations",
+            "File": {
+                "@type": "TBD#OriginalFile",
+                "@id": 23455246,
+                "omero:details": {
+                    "@type": "TBD#Details",
+                    "owner": {
+                        "@type": "http://www.openmicroscopy.org/Schemas/OME/2016-06#Experimenter",
+                        "@id": 2,
+                        "omero:details": {
+                            "@type": "TBD#Details",
+                            "permissions": {
+                                "@type": "TBD#Permissions",
+                                "perm": "rwr---",
+                                "canAnnotate": false,
+                                "canDelete": false,
+                                "canEdit": false,
+                                "canLink": false,
+                                "isWorldWrite": false,
+                                "isWorldRead": false,
+                                "isGroupWrite": false,
+                                "isGroupRead": true,
+                                "isGroupAnnotate": false,
+                                "isUserWrite": true,
+                                "isUserRead": true
+                            }
+                        },
+                        "FirstName": "Public",
+                        "MiddleName": "",
+                        "LastName": "data",
+                        "Email": "idr-project@lists.openmicroscopy.org.uk",
+                        "Institution": "IDR Project",
+                        "UserName": "demo"
+                    },
+                    "group": {
+                        "@type": "http://www.openmicroscopy.org/Schemas/OME/2016-06#ExperimenterGroup",
+                        "@id": 3,
+                        "omero:details": {
+                            "@type": "TBD#Details",
+                            "permissions": {
+                                "@type": "TBD#Permissions",
+                                "perm": "rwr---",
+                                "canAnnotate": false,
+                                "canDelete": false,
+                                "canEdit": false,
+                                "canLink": false,
+                                "isWorldWrite": false,
+                                "isWorldRead": false,
+                                "isGroupWrite": false,
+                                "isGroupRead": true,
+                                "isGroupAnnotate": false,
+                                "isUserWrite": true,
+                                "isUserRead": true
+                            }
+                        },
+                        "Name": "Public"
+                    },
+                    "permissions": {
+                        "@type": "TBD#Permissions",
+                        "perm": "rwr---",
+                        "canAnnotate": false,
+                        "canDelete": false,
+                        "canEdit": false,
+                        "canLink": false,
+                        "isWorldWrite": false,
+                        "isWorldRead": false,
+                        "isGroupWrite": false,
+                        "isGroupRead": true,
+                        "isGroupAnnotate": false,
+                        "isUserWrite": true,
+                        "isUserRead": true
+                    }
+                },
+                "path": "bulk_annotations",
+                "size": 145340,
+                "atime": 1559908540981,
+                "mtime": 1559908541000,
+                "ctime": 1559908540981,
+                "mimetype": "OMERO.tables",
+                "name": "bulk_annotations"
+            }
+        }
+    ],
+    "Name": "idr0062-blin-nuclearsegmentation/experimentA",
+    "Description": "Publication Title\nNesSys: a novel method for accurate nuclear segmentation in 3D\n\nExperiment Description\nWe provide a user-friendly 3D editing tool to rapidly correct segmentation errors.  We test our method alongside other previously-published user-friendly methods, with focus on mid-gestation embryos, 3D cultures of pluripotent stem cells and pluripotent stem cell-derived neural rosettes.",
+    "images_metadata": [
+        [
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001237",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001239",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001238"
+        ],
+        [
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001240",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001241",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001242",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001243",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001244",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001245",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001246",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001247",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001248",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001249",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001250"
+        ],
+        [
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001253",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001251",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001252"
+        ],
+        [
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001254",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001255",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001256",
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001257"
+        ],
+        [
+            "https://idr.openmicroscopy.org/api/v0/m/images/6001258"
+        ]
+    ],
+    "images_data": [
+        [
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001237/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001239/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001238/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9"
+        ],
+        [
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001240/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001241/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001242/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001243/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001244/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001245/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001246/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001247/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001248/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001249/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001250/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9"
+        ],
+        [
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001253/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001251/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001252/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9"
+        ],
+        [
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001254/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001255/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001256/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001257/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9"
+        ],
+        [
+            "https://idr.openmicroscopy.org/webgateway/render_image_region/6001258/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9"
+        ]
+    ],
+    "images_data_type": "example plane URLs for big images",
+    "author": "Public",
+    "provider": "OMERO",
+    "publisher": "https://idr.openmicroscopy.org",
+    "@context": {
+        "perm": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#perm",
+        "canAnnotate": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#canAnnotate",
+        "canDelete": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#canDelete",
+        "canEdit": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#canEdit",
+        "canLink": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#canLink",
+        "isWorldWrite": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#isWorldWrite",
+        "isWorldRead": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#isWorldRead",
+        "isGroupWrite": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#isGroupWrite",
+        "isGroupRead": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#isGroupRead",
+        "isGroupAnnotate": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#isGroupAnnotate",
+        "isUserWrite": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#isUserWrite",
+        "isUserRead": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#isUserRead",
+        "Name": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#Name",
+        "omero": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#",
+        "OMEImage": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#Image",
+        "Project": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#Project",
+        "Dataset": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#Dataset",
+        "name": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#name",
+        "description": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#description",
+        "manufacturer": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#manufacturer",
+        "model": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#model",
+        "serialNumber": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#serialNumber",
+        "microscopeType": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#microscopeType",
+        "version": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#version",
+        "voltage": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#voltage",
+        "gain": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#gain",
+        "offsetValue": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#offsetValue",
+        "zoom": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#zoom",
+        "amplificationGain": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#amplificationGain",
+        "detectorType": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#detectorType",
+        "nominalMagnification": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#nominalMagnification",
+        "calibratedMagnification": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#calibratedMagnification",
+        "lensNA": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#lensNA",
+        "immersion": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#immersion",
+        "correction": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#correction",
+        "workingDistance": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#workingDistance",
+        "iris": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#iris",
+        "lotNumber": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#lotNumber",
+        "dichroic": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#dichroic",
+        "Instrument": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#Instrument",
+        "Microscope": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#Microscope",
+        "Detector": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#Detector",
+        "Objective": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#Objective",
+        "FilterSet": "https://www.openmicroscopy.org/Schemas/Documentation/Generated/OME-2016-06/ome.html#FilterSet"
+    }
+}

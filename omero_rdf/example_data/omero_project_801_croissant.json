@@ -1,0 +1,148 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "name": "idr0062-blin-nuclearsegmentation/experimentA",
+  "description": "Publication Title\nNesSys: a novel method for accurate nuclear segmentation in 3D\n\nExperiment Description\nWe provide a user-friendly 3D editing tool to rapidly correct segmentation errors.  We test our method alongside other previously-published user-friendly methods, with focus on mid-gestation embryos, 3D cultures of pluripotent stem cells and pluripotent stem cell-derived neural rosettes.",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "citeAs": "10.1371/journal.pbio.3000388 https://doi.org/10.1371/journal.pbio.3000388",
+  "creator": "Blin G, Sadurska D, Migueles RP, Chen N, Watson JA, Lowell S",
+  "license": "CC BY 4.0 https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://idr.openmicroscopy.org/api/v0/m/projects/801",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "project-annotation",
+      "name": "project-annotation",
+      "description": "CSV annotation for the images, including biological experiment details.",
+      "contentUrl": "https://github.com/IDR/idr0062-blin-nuclearsegmentation/blob/HEAD/experimentA/idr0062-experimentA-annotation.csv",
+      "encodingFormat": "application/json",
+      "sha256": "main"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "image-example-planes",
+      "name": "image-example-planes",
+      "description": "Example data planes, template. Use OMERO CLI and Images ID to download the full image (WARNING: might be Terrabytes in size!)",
+      "encodingFormat": "application/json",
+      "includes": [
+        [
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001237/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001239/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001238/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9"
+        ],
+        [
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001240/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001241/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001242/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001243/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001244/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001245/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001246/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001247/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001248/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001249/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001250/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9"
+        ],
+        [
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001253/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001251/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001252/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9"
+        ],
+        [
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001254/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001255/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001256/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9",
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001257/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9"
+        ],
+        [
+          "https://idr.openmicroscopy.org/webgateway/render_image_region/6001258/357/0/?tile=0,0,0,512,512&c=1|100:1008$808080&maps=[{\"inverted\":{\"enabled\":false}}]&m=g&p=normal&q=0.9"
+        ]
+      ]
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "image-metadata",
+      "name": "image-metadata",
+      "description": "Metadata of the images in the project. Use OMERO CLI and Images ID to download the full image (WARNING: might be Terrabytes in size!)",
+      "encodingFormat": "application/json",
+      "includes": [
+        [
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001237",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001239",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001238"
+        ],
+        [
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001240",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001241",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001242",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001243",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001244",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001245",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001246",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001247",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001248",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001249",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001250"
+        ],
+        [
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001253",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001251",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001252"
+        ],
+        [
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001254",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001255",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001256",
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001257"
+        ],
+        [
+          "https://idr.openmicroscopy.org/api/v0/m/images/6001258"
+        ]
+      ]
+    }
+  ]
+}
